@@ -1,4 +1,3 @@
-require 'json'
 require 'open-uri'
 
 class GamesController < ApplicationController
@@ -11,9 +10,7 @@ class GamesController < ApplicationController
     @answer = params[:answer]
     @letters = params[:letters].split
     url = "https://wagon-dictionary.herokuapp.com/#{@answer}"
-    # word = JSON.parse(open("#{@base_url}#{@answer}").read)
-    jason = open(url).read
-    word = JSON.parse(jason)
-    word[:found] ? @score = @answer.length : @score = 0
+    word = JSON.parse(open(url).read)
+    word["found"] ? @score = @answer.length : @score = 0
   end
 end
